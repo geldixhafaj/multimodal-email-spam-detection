@@ -36,38 +36,40 @@ All experiments were executed in **Google Colab** using Python, with GPU acceler
 
 ## Repository Structure
 
+```text
 multimodal-email-spam-detection/
-│
-├── README.md
-├── LICENSE
-├── .gitignore
-├── requirements.txt
-│
-├── notebooks/
-│ ├── 01_download_data.ipynb
-│ ├── 02_eda.ipynb
-│ ├── 03_baseline_distilbert_train.ipynb
-│ ├── 04_embeddings_extract.ipynb
-│ ├── 05_structural_features.ipynb
-│ ├── 06_multimodal_mlp_train.ipynb
-│ ├── 07_explainability.ipynb
-│ └── 08_results_tables_figures.ipynb
+├── assets/
+│   ├── figures/
+│   └── tables/
 │
 ├── configs/
-│ ├── baseline_distilbert.json
-│ ├── multimodal_mlp.json
-│ └── feature_extraction.json
+│   ├── baseline_distilbert.json
+│   ├── feature_extraction.json
+│   └── multimodal_mlp.json
 │
-├── assets/
-│ ├── figures/
-│ └── tables/
+├── notebooks/
+│   ├── 01_download_data.ipynb
+│   ├── 02_eda.ipynb
+│   ├── 03_baseline_distilbert_train.ipynb
+│   ├── 04_embeddings_extract.ipynb
+│   ├── 05_structural_features.ipynb
+│   ├── 06_multimodal_mlp_train.ipynb
+│   ├── 07_explainability.ipynb
+│   └── 08_results_tables_figures.ipynb
 │
-├── src/ # optional utility modules
+├── src/
+│   ├── __init__.py
+│   ├── data_utils.py
+│   ├── feature_utils.py
+│   ├── metrics_utils.py
+│   ├── seed_utils.py
+│   └── viz_utils.py
 │
-├── artifacts/ # gitignored (models, logs, metrics)
-│
-└── data/ # gitignored (datasets not redistributed)
----
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
+
 
 ## Dataset Access
 
