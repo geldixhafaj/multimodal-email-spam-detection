@@ -75,13 +75,10 @@ Due to licensing restrictions, **datasets are not included** in this repository.
 
 The datasets used in this study are publicly available on Kaggle and must be downloaded manually by users wishing to reproduce the experiments.
 
-Example datasets used:
+Datasets used:
 
-- Enron Email Spam Dataset  
-  https://www.kaggle.com/datasets/wcukierski/enron-email-dataset
-
-- SMS Spam Collection Dataset  
-  https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset
+- Spam Emails
+  https://www.kaggle.com/datasets/abdallahwagih/spam-emails
 
 Users must comply with the original dataset licenses when accessing and using the data.
 
