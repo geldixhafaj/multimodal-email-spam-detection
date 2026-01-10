@@ -100,51 +100,46 @@ Execute notebooks sequentially in the order defined by their numeric prefix
 
 All paths are relative and compatible with Google Colab.
 
-Evaluation Metrics
+## Evaluation Metrics
+
 The models are evaluated using the following metrics:
 
-Accuracy
+1. Accuracy
+2. Precision
+3. Recall
+4. F1-score (primary metric)
+5. ROC-AUC
 
-Precision
-
-Recall
-
-F1-score (primary metric)
-
-ROC-AUC
-
-Confusion matrices
+## Confusion matrices
 
 Robustness is assessed via seed variation and threshold sensitivity analysis.
 
-Explainability
+## Explainability
+
 Model interpretability is addressed using:
 
-Attention visualization for transformer-based models
-
-SHAP / LIME for post-hoc explanation of multimodal predictions
-
-Global feature importance analysis
-
-Local case studies for true positives and misclassifications
+1. Attention visualization for transformer-based models
+2. SHAP / LIME for post-hoc explanation of multimodal predictions
+3. Global feature importance analysis
+4. Local case studies for true positives and misclassifications
 
 Explainability figures are exported to the assets/figures/ directory and referenced in the dissertation.
 
-Computational Environment
-Python 3.x
+## Computational Environment
 
-Google Colab
+1. Python 3.x
+2. Google Colab
+3. GPU acceleration (where available)
+4. Training time and inference latency may vary depending on runtime configuration.
 
-GPU acceleration (where available)
+## License
 
-Training time and inference latency may vary depending on runtime configuration.
-
-License
 This repository is licensed under the MIT License.
 
 The license applies only to the code in this repository and does not cover third-party datasets.
 
-Academic Use and Citation
+## Academic Use and Citation
+
 This repository is intended for academic and research purposes.
 
 If you use or adapt this work, please cite the corresponding dissertation or related publication.
