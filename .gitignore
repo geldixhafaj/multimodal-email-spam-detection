@@ -205,3 +205,55 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =========================
+# Dissertation / ML extras
+# =========================
+
+# Local datasets (not redistributed)
+data/
+datasets/
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.jsonl
+*.zip
+*.7z
+*.tar.gz
+
+# Model checkpoints / large artifacts
+artifacts/
+checkpoints/
+models/
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.onnx
+
+# Experiment tracking
+wandb/
+mlruns/
+runs/
+lightning_logs/
+tensorboard/
+tb_logs/
+
+# Credentials / secrets (never commit)
+kaggle.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+
+# OS / editor clutter
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Optional: ignore local Colab outputs if you use them
+*.log
