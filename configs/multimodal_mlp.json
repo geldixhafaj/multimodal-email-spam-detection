@@ -1,1 +1,225 @@
 
+# ============================================
+# multimodal_mlp.json generator (Notebook 06)
+# ============================================
+# Geldi Xhafaj – MSc Dissertation
+# Creates a rich JSON snapshot of the multimodal MLP fusion experiment.
+# --------------------------------------------
+import os, json, csv
+from datetime import datetime
+
+OUT_DIR  = "/content/outputs_multimodal"
+os.makedirs(OUT_DIR, exist_ok=True)
+JSON_PATH = os.path.join(OUT_DIR, "multimodal_mlp.json")
+
+# =============== 1) INPUTS (EDIT IF NEEDED) ===============
+
+# 1.1 Fusion specification (early fusion: 768 + 13 -> 781)
+fusion_spec = {
+    "embedding_dim": 768,
+    "structural_dim": 13,
+    "input_dim": 781,
+    "fusion_strategy": "early_fusion_concat",
+    "text_embedding_source": "DistilBERT (mean-pooled, frozen)",
+    "struct_feature_names_path": "/content/struct_features/struct_feature_names.json",  # optional
+    "feature_extraction_meta": "/content/outputs_features/feature_extraction.json"      # optional
+}
+
+# 1.2 Architecture used in training (match Notebook 06)
+architecture = {
+    "model": "MultimodalMLP",
+    "hidden_layers": [512, 128],
+    "activation": "ReLU",
+    "dropout": 0.2,
+    "output": "binary logit",
+    "loss": "class-weighted BCE/CE"
+}
+
+# 1.3 Training configuration / class weights (from your log)
+train_cfg = {
+    "optimizer": "AdamW",
+    "learning_rate": 2e-4,    # put your actual LR; adjust if different
+    "weight_decay": 0.0,
+    "epochs": 7,              # early stopping at 7 in your log
+    "batch_size": 256,        # set your actual batch size
+    "scheduler": None,        # set if you used one
+    "class_counts": {"ham": 3473, "spam": 538},
+    "class_weights": [0.57745465, 3.72769517],
+    "early_stopping": {"enabled": True, "best_val_f1": 0.9474, "best_epoch": 2}
+}
+
+# 1.4 Data shapes (from your alignment message)
+data_shapes = {
+    "train": {"X": [4011, 781], "y": [4011]},
+    "val":   {"X": [446,  781], "y": [446]},
+    "test":  {"X": [1115, 781], "y": [1115]},
+    "embeddings": {"train": [4011, 768], "val": [446, 768], "test": [1115, 768]},
+    "struct":     {"train": [4011, 13],  "val": [446, 13],  "test": [1115, 13]}
+}
+
+# 1.5 Latency (from your log)
+latency = {
+    "per_sample_seconds": 4.78209999982937e-07,  # ~0.48 μs
+    "train_time_seconds": 0.89,                  # you also saw ~1.02s; use the one you prefer
+    "notes": "Frozen embeddings + compact MLP → microsecond-level inference."
+}
+
+# 1.6 Final TEST metrics & confusion (fallback values from your post)
+fallback_test_metrics = {
+    "accuracy": 0.9901345291479821,
+    "precision_spam": 0.9662162162162162,
+    "recall_spam": 0.959731543624161,
+    "f1_spam": 0.9629629629629629,
+    "roc_auc": 0.9944245279086246
+}
+fallback_confusion = {"TN": 961, "FP": 5, "FN": 6, "TP": 143}
+
+# 1.7 File lineage (adjust if different)
+file_lineage = {
+    "state_dict": os.path.join(OUT_DIR, "multimodal_mlp_state_dict.pt"),
+    "training_history_csv": os.path.join(OUT_DIR, "multimodal_training_history.csv"),
+    "results_json": os.path.join(OUT_DIR, "multimodal_results.json"),
+    "fusion_inputs": {
+        "X_train_fused": "/content/X_train_fused.npy",
+        "X_val_fused":   "/content/X_val_fused.npy",
+        "X_test_fused":  "/content/X_test_fused.npy",
+        "y_train":       "/content/y_train.npy",
+        "y_val":         "/content/y_val.npy",
+        "y_test":        "/content/y_test.npy"
+    }
+}
+
+# 1.8 Runtime info (optional)
+runtime = {
+    "platform": "Google Colab",
+    "gpu_available": False,         # set True if session had GPU
+    "cuda_device": None,            # e.g., "Tesla T4"
+    "python_version": "3.10.x"
+}
+
+# =============== 2) TRY AUTO-LOAD HISTORY & RESULTS ===============
+
+def load_history_csv(path):
+    """Load per-epoch training CSV if present. Expect columns such as:
+       epoch, train_loss, val_f1, val_prec, val_rec, val_loss, etc."""
+    history = []
+    if os.path.isfile(path):
+        try:
+            with open(path, "r", newline="") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    # cast numeric fields where possible
+                    rec = {"epoch": int(row.get("epoch", len(history)+1))}
+                    for k,v in row.items():
+                        if k == "epoch": 
+                            continue
+                        try:
+                            rec[k] = float(v)
+                        except:
+                            rec[k] = v
+                    history.append(rec)
+        except Exception as e:
+            print("WARN: Could not parse training history CSV:", e)
+    return history
+
+def load_results_json(path):
+    """Load results JSON if present. Expect keys like:
+       {'val': {...}, 'test': {'accuracy': ..., 'precision': ..., 'recall': ..., 'f1': ..., 'roc_auc': ...},
+        'confusion': {'TN':..., 'FP':..., 'FN':..., 'TP':...}}"""
+    res = {}
+    if os.path.isfile(path):
+        try:
+            with open(path, "r") as f:
+                res = json.load(f)
+        except Exception as e:
+            print("WARN: Could not parse results JSON:", e)
+    return res
+
+history = load_history_csv(file_lineage["training_history_csv"])
+results = load_results_json(file_lineage["results_json"])
+
+# Build validation summary if history exists
+val_summary = {}
+if history:
+    # pick best epoch by val_f1 if present
+    best = max(history, key=lambda r: float(r.get("val_f1", -1)))
+    val_summary = {
+        "best_epoch": int(best.get("epoch", 0)),
+        "best_val_f1": float(best.get("val_f1", 0.0)),
+        "best_val_prec": float(best.get("val_prec", 0.0)),
+        "best_val_rec": float(best.get("val_rec", 0.0)),
+        "best_val_loss": float(best.get("val_loss", 0.0))
+    }
+
+# Compose final test metrics & confusion with safe fallbacks
+test_metrics = {
+    "accuracy": float(results.get("test", {}).get("accuracy", fallback_test_metrics["accuracy"])),
+    "precision_spam": float(results.get("test", {}).get("precision", fallback_test_metrics["precision_spam"])),
+    "recall_spam": float(results.get("test", {}).get("recall", fallback_test_metrics["recall_spam"])),
+    "f1_spam": float(results.get("test", {}).get("f1", fallback_test_metrics["f1_spam"])),
+    "roc_auc": float(results.get("test", {}).get("roc_auc", fallback_test_metrics["roc_auc"]))
+}
+confusion = results.get("confusion", fallback_confusion)
+
+# Derive ham metrics and macro/micro if confusion available
+TN, FP, FN, TP = confusion["TN"], confusion["FP"], confusion["FN"], confusion["TP"]
+ham_precision = TN / (TN + FN) if (TN + FN) > 0 else None
+ham_recall    = TN / (TN + FP) if (TN + FP) > 0 else None
+ham_f1        = (2*ham_precision*ham_recall / (ham_precision + ham_recall)) if (ham_precision and ham_recall and (ham_precision + ham_recall)>0) else None
+macro_f1      = (ham_f1 + test_metrics["f1_spam"]) / 2 if (ham_f1 is not None) else None
+micro_f1      = (TP + TN) / (TP + TN + FP + FN)  # identical to accuracy for binary
+
+# =============== 3) OPTIONAL: LINK FEATURE NAMES ===============
+struct_feature_names = None
+if os.path.isfile(fusion_spec["struct_feature_names_path"]):
+    try:
+        with open(fusion_spec["struct_feature_names_path"], "r") as f:
+            struct_feature_names = json.load(f)
+    except Exception as e:
+        print("WARN: Could not load struct_feature_names.json:", e)
+
+# =============== 4) COMPOSE JSON ===============
+mlp_json = {
+    "run_info": {
+        "project": "MSc Dissertation - Spam Detection",
+        "stage": "Multimodal Classifier (Notebook 06)",
+        "timestamp_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z",
+        "runtime": runtime
+    },
+    "fusion_spec": fusion_spec | {"struct_feature_names": struct_feature_names},
+    "architecture": architecture,
+    "training": {
+        "config": train_cfg,
+        "history": history,          # list of per-epoch dicts if CSV present
+        "validation_best": val_summary if val_summary else train_cfg.get("early_stopping", {})
+    },
+    "data_shapes": data_shapes,
+    "files": file_lineage,
+    "latency": latency,
+    "test": {
+        "metrics": {
+            "accuracy": test_metrics["accuracy"],
+            "precision_spam": test_metrics["precision_spam"],
+            "recall_spam": test_metrics["recall_spam"],
+            "f1_spam": test_metrics["f1_spam"],
+            "precision_ham": ham_precision,
+            "recall_ham": ham_recall,
+            "f1_ham": ham_f1,
+            "macro_f1": macro_f1,
+            "micro_f1": micro_f1,
+            "roc_auc": test_metrics["roc_auc"]
+        },
+        "confusion_matrix": confusion
+    },
+    "notes": "Embeddings frozen; early fusion with scaled structural features; class weights per training log."
+}
+
+# =============== 5) SAVE JSON ===============
+with open(JSON_PATH, "w") as f:
+    json.dump(mlp_json, f, indent=2)
+
+print("Saved:", JSON_PATH)
+
+# =============== 6) QUICK PRINT (optional) ===============
+print(json.dumps(mlp_json["test"], indent=2))
+
