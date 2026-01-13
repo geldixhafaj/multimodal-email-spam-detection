@@ -1,1 +1,115 @@
 
+# ============================================
+# Baseline DistilBERT JSON generator
+# ============================================
+# Saves a complete baseline record to baseline_distilbert.json
+# Edit the "INPUTS" section with your exact values from notebook3.png
+# --------------------------------------------
+import os, json
+from datetime import datetime
+
+OUT_DIR = "/content/outputs_baseline"
+os.makedirs(OUT_DIR, exist_ok=True)
+JSON_PATH = os.path.join(OUT_DIR, "baseline_distilbert.json")
+
+# =============== 1) INPUTS (EDIT THESE) ===============
+
+# 1.1 Run/Environment
+run_info = {
+    "project": "MSc Dissertation - Spam Detection",
+    "experiment": "Baseline - DistilBERT (text-only)",
+    "runtime": {
+        "platform": "Google Colab",
+        "gpu_available": False,          # True/False as per your session
+        "cuda_device": None,             # e.g., "Tesla T4" if GPU
+        "python_version": "3.10.x"       # optional
+    },
+    "timestamp_utc": datetime.utcnow().isoformat(timespec="seconds") + "Z"
+}
+
+# 1.2 Model & Tokenizer configuration
+model_cfg = {
+    "base_model": "distilbert-base-uncased",
+    "tokenizer": "distilbert-base-uncased",
+    "max_seq_length": 256,
+    "padding": True,
+    "truncation": True
+}
+
+# 1.3 Training configuration
+train_cfg = {
+    "optimizer": "AdamW",
+    "learning_rate": 2e-5,          # use the value you actually used
+    "weight_decay": 0.01,           # if used
+    "epochs": 3,
+    "batch_size": 32,               # set your actual batch size
+    "scheduler": "Linear",
+    "warmup_steps": 0,              # set if you used warmup
+    "class_weighting": "enabled"    # disabled/enabled
+}
+
+# 1.4 Dataset summary & splits (from your Notebook 02)
+dataset_info = {
+    "total_messages": 5572,
+    "label_mapping": {"Ham": 0, "Spam": 1},
+    "splits": {
+        "train": {"ham": 3473, "spam": 538, "total": 4011},
+        "val":   {"ham": 386,  "spam": 60,  "total": 446},
+        "test":  {"ham": 966,  "spam": 149, "total": 1115}
+    }
+}
+
+# 1.5 Validation snapshot (per-epoch – copy numbers from your run)
+# Values below are exactly what you posted (≈):
+val_history = [
+    {"epoch": 1, "accuracy": 0.986547, "precision": 1.000000, "recall": 0.900000, "f1": 0.947368, "roc_auc": 0.987932, "train_loss": 0.053600, "val_loss": 0.081218},
+    {"epoch": 2, "accuracy": 0.986547, "precision": 1.000000, "recall": 0.900000, "f1": 0.947368, "roc_auc": 0.991256, "train_loss": 0.013200, "val_loss": 0.083852},
+    {"epoch": 3, "accuracy": 0.986547, "precision": 1.000000, "recall": 0.900000, "f1": 0.947368, "roc_auc": 0.986485, "train_loss": 0.009800, "val_loss": 0.095819}
+]
+early_stopping = {"enabled": True, "best_epoch": 3, "best_val_f1": 0.947368}
+
+# 1.6 Test metrics & confusion matrix (from `notebook3.png`)
+test_metrics = {
+    "accuracy": 0.9890,
+    "spam_precision": 0.9790,
+    "spam_recall": 0.9400,
+    "spam_f1": 0.9590,
+    "ham_precision": 0.9910,
+    "ham_recall": 0.9970,
+    "ham_f1": 0.9940,
+    "macro_f1": 0.9770,
+    "micro_f1": 0.9890,
+    # add AUC if you computed it on test:
+    # "roc_auc": 0.9930
+}
+confusion_matrix = {"TN": 963, "FP": 3, "FN": 9, "TP": 140}
+
+# Optional: latency measurements from your run
+latency = {
+    "per_sample_seconds": 0.0005404226366666383,   # from your screenshot
+    "notes": "Measured with text-only DistilBERT head"
+}
+
+# =============== 2) COMPOSE JSON ===============
+baseline_json = {
+    "run_info": run_info,
+    "model_cfg": model_cfg,
+    "train_cfg": train_cfg,
+    "dataset_info": dataset_info,
+    "validation": {
+        "early_stopping": early_stopping,
+        "per_epoch": val_history
+    },
+    "test": {
+        "metrics": test_metrics,
+        "confusion_matrix": confusion_matrix
+    },
+    "latency": latency
+}
+
+# =============== 3) SAVE JSON ===============
+with open(JSON_PATH, "w") as f:
+    json.dump(baseline_json, f, indent=2)
+
+print("Saved:", JSON_PATH)
+
