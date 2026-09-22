@@ -1,0 +1,167 @@
+{
+  "corpus_name": "MEPC \u2014 Multi-source Email Phishing Corpus",
+  "seed": 42,
+  "rows_raw": 101229,
+  "rows_clean": 99707,
+  "n_struct_features": 13,
+  "struct_features": [
+    "url_count",
+    "url_length_max",
+    "url_length_avg",
+    "url_subdom_max",
+    "url_subdom_avg",
+    "uppercase_ratio",
+    "punct_density",
+    "digit_count",
+    "currency_flag",
+    "html_flag",
+    "body_length",
+    "subject_length",
+    "attachment_count"
+  ],
+  "max_len": 256,
+  "max_len_coverage": {
+    "64": 16.506363645481258,
+    "128": 35.21317460158264,
+    "192": 50.27831546431043,
+    "256": 61.29659903517306,
+    "320": 69.5357397173719,
+    "384": 75.56039194840884,
+    "448": 80.51089692799903,
+    "512": 83.72732105067848
+  },
+  "min_lang_n": 50,
+  "usable_languages": [
+    "de",
+    "en",
+    "es",
+    "fa",
+    "fi",
+    "fr",
+    "it",
+    "ja",
+    "nl",
+    "pl",
+    "pt",
+    "ru",
+    "sl",
+    "tr",
+    "uk",
+    "zh"
+  ],
+  "split_ratios": {
+    "train": 0.72,
+    "val": 0.08,
+    "test": 0.2
+  },
+  "held_out_source": "phishing_pot",
+  "trec_sources": [
+    "trec5",
+    "trec6",
+    "trec7"
+  ],
+  "class_weights": {
+    "A": {
+      "0": 0.8887197009086633,
+      "1": 1.1431369426751592
+    },
+    "B": {
+      "0": 0.8962835404285971,
+      "1": 1.1308614274759294
+    },
+    "C1": {
+      "0": 0.950579872802095,
+      "1": 1.0548405845234141
+    },
+    "C2": {
+      "0": 0.9531068704174587,
+      "1": 1.0517462133594857
+    },
+    "C3": {
+      "0": 0.8223496976165066,
+      "1": 1.275555248999862
+    }
+  },
+  "class_labels": {
+    "0": "Legitimate",
+    "1": "Phishing"
+  },
+  "leakage_upper_bound_source_only": 0.6160048943404174,
+  "excluded_from_features": [
+    "source",
+    "origin",
+    "sender_domain",
+    "receiver_domain",
+    "date",
+    "sender",
+    "receiver",
+    "urls"
+  ],
+  "univariate_auc": {
+    "html_flag": 0.8236745160512701,
+    "url_count": 0.7152411270639863,
+    "url_length_max": 0.6912185660361797,
+    "url_length_avg": 0.6889313193181105,
+    "url_subdom_max": 0.6287227855775942,
+    "url_subdom_avg": 0.6140058254789905,
+    "subject_length": 0.559509289580345,
+    "punct_density": 0.5526493203847651,
+    "body_length": 0.5278492126646993,
+    "currency_flag": 0.5223238174531573,
+    "uppercase_ratio": 0.511467645266453,
+    "attachment_count": 0.5086454241368046,
+    "digit_count": 0.5059427148165867
+  },
+  "palette": {
+    "AMBER": "#D99A0B",
+    "AMBER_D": "#8C6206",
+    "AMBER_L": "#F0C862",
+    "GRAPHITE": "#26282D",
+    "SLATE": "#6E7178",
+    "PHISH": "#A62B1F",
+    "LEGIT": "#4F6B3A",
+    "PAPER": "#FBFAF7"
+  },
+  "cleaning_log": [
+    {
+      "step": "1. Drop rows with missing label",
+      "before": 101229,
+      "after": 100984,
+      "removed": 245
+    },
+    {
+      "step": "4. Drop rows empty in body AND subject",
+      "before": 100984,
+      "after": 100984,
+      "removed": 0
+    },
+    {
+      "step": "Deduplication (exact + near)",
+      "before": 100984,
+      "after": 99707,
+      "removed": 1277
+    }
+  ],
+  "audit": {
+    "null_columns": 21,
+    "dead_columns": [],
+    "rows_missing_label": 245,
+    "bodies_with_replacement_char": 15,
+    "duplicate_bodies": 331,
+    "numeric_negatives": 0
+  },
+  "rotating_folds": {
+    "C1": "trec5",
+    "C2": "trec6",
+    "C3": "trec7"
+  },
+  "rotating_fold_val_fraction": 0.1,
+  "all_designs": [
+    "A",
+    "B",
+    "C1",
+    "C2",
+    "C3"
+  ],
+  "rotating_fold_note": "Each fold withholds one TREC source entirely; both classes in the test partition originate from that source, so class composition does not covary with source familiarity. phishing_pot is in training for every fold and in no test partition. Split B is retained separately as the single-class contemporary-source case."
+}

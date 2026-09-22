@@ -1,0 +1,21 @@
+{
+  "shap_n_explain": 300,
+  "shap_kmeans_background": 100,
+  "shap_kernel_nsamples": 2048,
+  "ablation_top3_shap_features": [
+    "html_flag",
+    "currency_flag",
+    "subject_length"
+  ],
+  "ablation_named_six": [
+    "url_count",
+    "uppercase_ratio",
+    "digit_count",
+    "currency_flag",
+    "punct_density",
+    "html_flag"
+  ],
+  "variance_seeds_fast": 5,
+  "variance_seeds_cnn": 3,
+  "quick_test_run": false
+}
