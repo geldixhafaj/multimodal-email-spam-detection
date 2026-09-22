@@ -1,0 +1,11 @@
+design,seed,ordering_identical_to_seed_42,positions_changed
+A,42,True,
+A,43,True,
+A,44,True,
+A,45,True,
+A,46,True,
+B,42,True,
+B,43,False,Structural + lexical (LR) <-> DistilBERT + Structural (Fusion); DistilBERT + Structural (Fusion) <-> DistilBERT embeddings + MLP (no structural); Lexical only (TF-IDF + LR) <-> Structural + lexical (LR); DistilBERT (text-only) <-> Lexical only (TF-IDF + LR); DistilBERT embeddings + MLP (no structural) <-> DistilBERT (text-only)
+B,44,False,Structural + lexical (LR) <-> DistilBERT + Structural (Fusion); DistilBERT + Structural (Fusion) <-> Structural + lexical (LR)
+B,45,False,"Structural + lexical (LR) <-> DistilBERT + Structural (Fusion); DistilBERT + Structural (Fusion) <-> Structural + lexical (LR); DistilBERT (text-only) <-> DistilBERT embeddings + MLP (no structural); DistilBERT embeddings + MLP (no structural) <-> DistilBERT (text-only); Structural only (RF) <-> CNN (word-embedding, from scratch); CNN (word-embedding, from scratch) <-> SVM (TF-IDF, linear); SVM (TF-IDF, linear) <-> Structural only (RF)"
+B,46,False,DistilBERT (text-only) <-> DistilBERT embeddings + MLP (no structural); DistilBERT embeddings + MLP (no structural) <-> DistilBERT (text-only)

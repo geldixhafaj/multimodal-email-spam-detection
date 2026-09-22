@@ -1,0 +1,9 @@
+design,comparison,f1_diff,f1_diff_ci_low,f1_diff_ci_high,recall_diff,recall_diff_ci_low,recall_diff_ci_high,f1_diff_excludes_zero,recall_diff_excludes_zero
+A,DistilBERT + Structural (Fusion) minus DistilBERT embeddings + MLP (no structural),0.0002,-0.0003,0.0007,-0.0002,-0.0009,0.0005,False,False
+A,DistilBERT + Structural (Fusion) minus DistilBERT (text-only),0.0008,-0.0001,0.0018,-0.001,-0.0023,0.0002,False,False
+A,DistilBERT (text-only) minus Lexical only (TF-IDF + LR),0.0087,0.0067,0.0108,0.0088,0.0061,0.0116,True,True
+A,DistilBERT + Structural (Fusion) minus Structural + lexical (LR),0.009,0.0067,0.011,0.0075,0.0045,0.0103,True,True
+B,DistilBERT + Structural (Fusion) minus DistilBERT embeddings + MLP (no structural),0.0067,0.0043,0.0092,0.0102,0.0063,0.0147,True,True
+B,DistilBERT + Structural (Fusion) minus DistilBERT (text-only),0.0066,0.0029,0.0105,0.0122,0.0061,0.0187,True,True
+B,DistilBERT (text-only) minus Lexical only (TF-IDF + LR),-0.0053,-0.0108,0.001,-0.0238,-0.0336,-0.0138,False,True
+B,DistilBERT + Structural (Fusion) minus Structural + lexical (LR),-0.0058,-0.0117,0.0006,-0.0232,-0.0329,-0.0125,False,True
