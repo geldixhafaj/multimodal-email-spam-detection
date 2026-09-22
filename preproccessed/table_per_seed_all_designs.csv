@@ -1,0 +1,11 @@
+design,held_out,seed,accuracy,phishing_recall,f1,macro_f1,FN
+A,none (in-distribution),0,0.9909,0.9919,0.9896,0.9907,71
+A,none (in-distribution),1,0.9911,0.992,0.9899,0.991,70
+A,none (in-distribution),2,0.9909,0.9925,0.9897,0.9908,65
+A,none (in-distribution),3,0.9911,0.9916,0.9899,0.991,73
+A,none (in-distribution),4,0.9914,0.9914,0.9902,0.9913,75
+B,phishing_pot,0,0.9631,0.9185,0.9522,0.9611,366
+B,phishing_pot,1,0.9612,0.9134,0.9495,0.959,389
+B,phishing_pot,2,0.9639,0.9207,0.9533,0.962,356
+B,phishing_pot,3,0.9596,0.9089,0.9473,0.9572,409
+B,phishing_pot,4,0.9594,0.9096,0.9471,0.9571,406

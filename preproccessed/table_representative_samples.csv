@@ -1,0 +1,7 @@
+#,Subject (truncated),Label,Upper.,Punct.,URLs,Curr.,HTML
+1,ÀÎÅÍ<|SIMBOL|>Ý Ä<|SIMBOL|><|SIMBOL|>å<|SIMBOL|>ç)<|SIMBOL,Phishing,0.536,0.0,2,No,Yes
+2,Hey tehre,Phishing,0.102,0.0494,5,No,Yes
+3,ÅëÇÕ<|SIMBOL|><|SIMBOL|><|SIMBOL|>ñ<|SIMBOL|><|SIMBOL|> <|,Phishing,0.426,0.0,11,No,Yes
+4,[ORGANIZATION] failover plan.,Legitimate,0.048,0.002,0,No,No
+5,RE: Intranet Site,Legitimate,0.054,0.0047,3,No,No
+6,FW: [ORGANIZATION] Company information,Legitimate,0.046,0.0011,0,No,No

@@ -1,0 +1,17 @@
+lang_eval_group,total,phishing,legitimate,phish_pct,evaluable
+en,93905,38003,55902,40.5,True
+de,1333,1297,36,97.3,True
+ru,770,765,5,99.4,False
+pt,697,684,13,98.1,False
+ja,464,453,11,97.6,False
+fr,410,369,41,90.0,True
+es,401,374,27,93.3,True
+zh,339,335,4,98.8,False
+nl,255,253,2,99.2,False
+pl,128,124,4,96.9,False
+uk,97,94,3,96.9,False
+it,89,80,9,89.9,False
+sl,76,76,0,100.0,False
+fi,70,70,0,100.0,False
+tr,58,56,2,96.6,False
+fa,50,50,0,100.0,False

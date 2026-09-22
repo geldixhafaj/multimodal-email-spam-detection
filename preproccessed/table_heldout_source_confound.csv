@@ -1,0 +1,5 @@
+design,held_out_source,n,legitimate,phishing,source_class_confounded
+B,phishing_pot,4490,0,4490,True
+C1,trec5,43242,26394,16848,False
+C2,trec6,13912,11087,2825,False
+C3,trec7,38063,18614,19449,False

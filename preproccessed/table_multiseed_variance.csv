@@ -1,0 +1,5 @@
+model,seeds,accuracy_mean,accuracy_std,spam_recall_mean,spam_recall_std,macro_f1_mean,macro_f1_std
+Naive Bayes (TF-IDF),5,0.9641,0.0004,0.9328,0.0011,0.9633,0.0004
+"SVM (TF-IDF, linear)",5,0.9857,0.0004,0.9855,0.0003,0.9854,0.0004
+DistilBERT + Structural (Fusion MLP),5,0.9911,0.0002,0.9919,0.0004,0.991,0.0002
+"CNN (word-embedding, from scratch)",3,0.9793,0.0019,0.9887,0.0021,0.979,0.0019
