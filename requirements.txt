@@ -1,1 +1,28 @@
-
+# Pinned to the software versions reported in Table 2 of the paper.
+# Intended for a Google Colab T4 GPU runtime (Python 3.13.15, CUDA 12.8).
+# google-colab is provided by the Colab runtime itself and is not installable
+# via pip outside Colab, so it is intentionally left out of this file.
+ 
+numpy==2.1.3
+pandas==2.2.3
+scipy==1.16.3
+scikit-learn==1.6.1
+torch==2.11.0+cu128
+transformers==5.16.1
+ 
+# Corpus I/O (Phase 1 writes/reads the cleaned corpus as Parquet)
+pyarrow
+ 
+# Plotting
+matplotlib
+seaborn
+ 
+# Model/artefact persistence
+joblib
+ 
+# Required for pandas DataFrame.to_markdown() (thesis table export, Phase 1 & 2)
+tabulate
+ 
+# Explainability (Phase 3)
+shap
+lime
