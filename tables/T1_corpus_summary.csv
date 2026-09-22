@@ -1,0 +1,13 @@
+Attribute,Value
+Corpus,MEPC — Multi-source Email Phishing Corpus
+Raw records,"101,229"
+Records after cleaning,"99,707"
+Source corpora,"phishing_pot, trec5, trec6, trec7"
+Languages (total / evaluable),91 / 4
+Legitimate,"56,095"
+Phishing,"43,612"
+Class ratio,1.29 : 1
+Mean body length,"1,144 chars"
+Total URLs,"321,469"
+Structural features (core / extended),13 / 21
+Transformer max_len,256 tokens

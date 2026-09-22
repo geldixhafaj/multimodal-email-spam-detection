@@ -1,0 +1,6 @@
+design,held_out,origin,train,val,test,groups_train_and_val
+A,none,Phase 1,71789,7976,19942,0
+B,phishing_pot,Phase 1,79633,8849,11225,0
+C1,trec5,Phase 1,50818,5647,43242,0
+C2,trec6,Phase 1,77215,8580,13912,0
+C3,trec7,Phase 1,55479,6165,38063,0

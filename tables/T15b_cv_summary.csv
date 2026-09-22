@@ -1,0 +1,7 @@
+,,accuracy,accuracy,precision,precision,recall,recall,f1,f1,macro_f1,macro_f1
+,,mean,std,mean,std,mean,std,mean,std,mean,std
+analysis,model,,,,,,,,,,
+"heads, Split A test pool",DistilBERT + Structural (Fusion),0.9898,0.0018,0.9841,0.0021,0.9927,0.0025,0.9883,0.0021,0.9896,0.0019
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),0.9886,0.0019,0.9828,0.0024,0.9913,0.0037,0.987,0.0022,0.9884,0.0019
+"heads, Split B test pool",DistilBERT + Structural (Fusion),0.995,0.0009,0.9933,0.001,0.9942,0.0026,0.9938,0.0011,0.9948,0.0009
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),0.99,0.0013,0.9869,0.0059,0.9882,0.0075,0.9875,0.0016,0.9896,0.0013

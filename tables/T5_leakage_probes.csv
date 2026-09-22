@@ -1,0 +1,6 @@
+probe,accuracy,macro_f1,auc
+all metadata,0.8568,0.8564,0.9184
+source + sender_domain,0.8543,0.8539,0.907
+sender_domain only,0.802,0.8017,0.8463
+year only,0.6203,0.6203,0.6668
+source only,0.616,0.6088,0.6485

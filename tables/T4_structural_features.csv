@@ -1,0 +1,22 @@
+Feature,Set,rank_biserial,magnitude,mutual_info,Univariate AUC
+url_count,core,0.4305,medium,0.1074,0.7152
+url_length_max,core,0.3824,medium,0.1791,0.6912
+url_length_avg,core,0.3779,medium,0.1905,0.6889
+url_subdom_max,core,0.2574,small,0.039,0.6287
+url_subdom_avg,core,0.228,small,0.06,0.614
+uppercase_ratio,core,-0.0229,negligible,0.0405,0.5115
+punct_density,core,0.1053,small,0.0223,0.5526
+digit_count,core,-0.0119,negligible,0.0099,0.5059
+currency_flag,core,0.0446,negligible,0.0028,0.5223
+html_flag,core,0.6473,large,0.2521,0.8237
+body_length,core,-0.0557,negligible,0.0101,0.5278
+subject_length,core,0.119,small,0.0289,0.5595
+attachment_count,core,-0.0173,negligible,0.0007,0.5086
+url_has_ip,extended,0.0164,negligible,0.0013,
+url_at_symbol,extended,0.0012,negligible,0.0,
+url_punycode,extended,0.0,negligible,0.0004,
+url_shortener,extended,0.0475,negligible,0.0081,
+url_distinct_domains,extended,0.3691,medium,0.0969,
+url_https_ratio,extended,-0.0113,negligible,0.0396,
+subject_upper_ratio,extended,-0.2194,small,0.0904,
+cue_total,extended,0.0881,negligible,0.009,

@@ -1,0 +1,5 @@
+model,design,epochs_run,final_epoch_budget,best_epoch,best_val_f1,stop_reason,epochs_after_best,val_f1_range_last_4_epochs,lr_at_stop
+DistilBERT,A,9,9,6,0.988,early_stopping_fired,3,0.00207,2.222222222222222e-06
+DistilBERT,B,6,6,3,0.9874,early_stopping_fired,3,0.00238,8.888888888888888e-06
+CNN,A,8,8,5,0.9753,early_stopping_fired,3,0.001,0.0002222222222222222
+CNN,B,10,10,7,0.9799,early_stopping_fired,3,0.0016,0.0

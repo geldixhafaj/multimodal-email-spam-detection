@@ -1,0 +1,21 @@
+analysis,model,fold,accuracy,precision,recall,f1,macro_f1,auc,avg_prec,fpr,TN,FP,FN,TP
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),1,0.9857,0.9809,0.986,0.9834,0.9854,0.9989,0.9987,0.0145,2239,33,24,1693
+"heads, Split A test pool",DistilBERT + Structural (Fusion),1,0.987,0.9815,0.9884,0.9849,0.9867,0.9991,0.9989,0.0141,2240,32,20,1697
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),2,0.991,0.985,0.9942,0.9896,0.9908,0.999,0.9989,0.0115,2244,26,10,1708
+"heads, Split A test pool",DistilBERT + Structural (Fusion),2,0.9912,0.985,0.9948,0.9899,0.9911,0.999,0.9989,0.0115,2244,26,9,1709
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),3,0.9885,0.9838,0.9905,0.9871,0.9883,0.9993,0.9991,0.0131,2178,29,17,1765
+"heads, Split A test pool",DistilBERT + Structural (Fusion),3,0.9892,0.9828,0.9933,0.988,0.9891,0.9994,0.9992,0.014,2176,31,12,1770
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),4,0.989,0.9798,0.9954,0.9875,0.9888,0.9994,0.9993,0.0161,2201,36,8,1743
+"heads, Split A test pool",DistilBERT + Structural (Fusion),4,0.99,0.9842,0.9931,0.9886,0.9898,0.9994,0.9993,0.0125,2209,28,12,1739
+"heads, Split A test pool",DistilBERT embeddings + MLP (no structural),5,0.989,0.9847,0.9903,0.9875,0.9888,0.9991,0.9986,0.0121,2206,27,17,1738
+"heads, Split A test pool",DistilBERT + Structural (Fusion),5,0.9915,0.987,0.9937,0.9903,0.9914,0.9993,0.9991,0.0103,2210,23,11,1744
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),1,0.988,0.9921,0.9777,0.9849,0.9874,0.9995,0.9992,0.0052,1340,7,20,878
+"heads, Split B test pool",DistilBERT + Structural (Fusion),1,0.9951,0.9922,0.9955,0.9939,0.9949,0.9999,0.9999,0.0052,1340,7,4,894
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),2,0.9911,0.9922,0.9857,0.9889,0.9907,0.9996,0.9994,0.0052,1332,7,13,893
+"heads, Split B test pool",DistilBERT + Structural (Fusion),2,0.9955,0.9945,0.9945,0.9945,0.9954,0.9999,0.9998,0.0037,1334,5,5,901
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),3,0.9911,0.9853,0.9921,0.9887,0.9907,0.9991,0.9984,0.0095,1351,13,7,874
+"heads, Split B test pool",DistilBERT + Structural (Fusion),3,0.9938,0.9943,0.9898,0.992,0.9935,0.9995,0.9992,0.0037,1359,5,9,872
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),4,0.9902,0.9779,0.9977,0.9877,0.9898,0.9996,0.9993,0.0147,1340,20,2,883
+"heads, Split B test pool",DistilBERT + Structural (Fusion),4,0.996,0.9932,0.9966,0.9949,0.9958,0.9999,0.9998,0.0044,1354,6,3,882
+"heads, Split B test pool",DistilBERT embeddings + MLP (no structural),5,0.9898,0.987,0.988,0.9875,0.9894,0.9991,0.9986,0.0091,1313,12,11,909
+"heads, Split B test pool",DistilBERT + Structural (Fusion),5,0.9947,0.9924,0.9946,0.9935,0.9945,0.9999,0.9998,0.0053,1318,7,5,915

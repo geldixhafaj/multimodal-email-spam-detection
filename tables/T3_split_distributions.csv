@@ -1,0 +1,16 @@
+,split_A,Legitimate,Phishing,Total
+Split A — In-distribution,train,40389,31400,71789
+Split A — In-distribution,val,4487,3489,7976
+Split A — In-distribution,test,11219,8723,19942
+Split B — Cross-source hold-out (phishing_pot),train,44424,35209,79633
+Split B — Cross-source hold-out (phishing_pot),val,4936,3913,8849
+Split B — Cross-source hold-out (phishing_pot),test,6735,4490,11225
+Fold C1 — Leave-one-source-out (trec5),train,26730,24088,50818
+Fold C1 — Leave-one-source-out (trec5),val,2971,2676,5647
+Fold C1 — Leave-one-source-out (trec5),test,26394,16848,43242
+Fold C2 — Leave-one-source-out (trec6),train,40507,36708,77215
+Fold C2 — Leave-one-source-out (trec6),val,4501,4079,8580
+Fold C2 — Leave-one-source-out (trec6),test,11087,2825,13912
+Fold C3 — Leave-one-source-out (trec7),train,33732,21747,55479
+Fold C3 — Leave-one-source-out (trec7),val,3749,2416,6165
+Fold C3 — Leave-one-source-out (trec7),test,18614,19449,38063

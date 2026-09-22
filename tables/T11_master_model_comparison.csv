@@ -1,0 +1,19 @@
+split,held_out,model,accuracy,precision,recall,f1,macro_f1,auc,fpr,TN,FP,FN,TP
+A,none (in-distribution),Structural only (RF),0.9359,0.9392,0.9124,0.9256,0.9346,0.9803,0.0459,10704,515,764,7959
+A,none (in-distribution),Naive Bayes (TF-IDF),0.9669,0.9831,0.9404,0.9613,0.9662,0.9946,0.0126,11078,141,520,8203
+A,none (in-distribution),"SVM (TF-IDF, linear)",0.9875,0.9828,0.9887,0.9857,0.9873,0.9986,0.0135,11068,151,99,8624
+A,none (in-distribution),Lexical only (TF-IDF + LR),0.9822,0.9768,0.9827,0.9797,0.9819,0.9978,0.0182,11015,204,151,8572
+A,none (in-distribution),Structural + lexical (LR),0.9827,0.9775,0.983,0.9803,0.9824,0.998,0.0176,11022,197,148,8575
+A,none (in-distribution),"CNN (word-embedding, from scratch)",0.9796,0.9832,0.9701,0.9766,0.9793,0.9982,0.0129,11074,145,261,8462
+A,none (in-distribution),DistilBERT (text-only),0.9898,0.9853,0.9915,0.9884,0.9897,0.9993,0.0115,11090,129,74,8649
+A,none (in-distribution),DistilBERT embeddings + MLP (no structural),0.9904,0.9873,0.9907,0.989,0.9902,0.9972,0.0099,11108,111,81,8642
+A,none (in-distribution),DistilBERT + Structural (Fusion),0.9906,0.988,0.9905,0.9892,0.9904,0.9973,0.0094,11114,105,83,8640
+B,phishing_pot,Structural only (RF),0.9365,0.9326,0.9067,0.9195,0.9335,0.9743,0.0437,6441,294,419,4071
+B,phishing_pot,Naive Bayes (TF-IDF),0.9026,0.978,0.7739,0.8641,0.8941,0.9862,0.0116,6657,78,1015,3475
+B,phishing_pot,"SVM (TF-IDF, linear)",0.9388,0.9791,0.8655,0.9188,0.9348,0.991,0.0123,6652,83,604,3886
+B,phishing_pot,Lexical only (TF-IDF + LR),0.9563,0.9717,0.9176,0.9439,0.9541,0.9924,0.0178,6615,120,370,4120
+B,phishing_pot,Structural + lexical (LR),0.9617,0.9739,0.9292,0.951,0.9598,0.9925,0.0166,6623,112,318,4172
+B,phishing_pot,"CNN (word-embedding, from scratch)",0.9385,0.9733,0.8702,0.9189,0.9347,0.9907,0.0159,6628,107,583,3907
+B,phishing_pot,DistilBERT (text-only),0.9532,0.9882,0.8938,0.9386,0.9504,0.9959,0.0071,6687,48,477,4013
+B,phishing_pot,DistilBERT embeddings + MLP (no structural),0.9531,0.9855,0.8958,0.9385,0.9503,0.9946,0.0088,6676,59,468,4022
+B,phishing_pot,DistilBERT + Structural (Fusion),0.958,0.9879,0.906,0.9452,0.9555,0.9947,0.0074,6685,50,422,4068

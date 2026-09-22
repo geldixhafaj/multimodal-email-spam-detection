@@ -1,0 +1,28 @@
+Setting,Value
+DistilBERT checkpoint,distilbert-base-uncased
+Parameters per encoder,67.0M
+Max sequence length,256
+Batch size,32
+Epoch budget policy,"starts at 10, extends by 5 (ceiling 25) unless early stopping fires (patience 3 on validation F1) or validation F1 plateaus (range < 0.0015 over the last 4 epochs)"
+"Epochs run (A, B)","9, 6"
+"Stop reason (A, B)","early_stop, early_stop"
+Optimiser,AdamW (decoupled weight decay)
+Learning rate (DistilBERT / CNN),2e-05 / 0.001
+Weight decay,0.01
+LR schedule,"linear warmup over 10% of steps, then linear decay to zero"
+Gradient clipping,max norm 1.0
+Mixed precision,fp16
+Loss,"cross-entropy, class weights n/(2 n_c) from each design's training partition"
+Imbalance handling,"class weighting only; no oversampling, undersampling or synthetic data"
+Embedding pooling,mean over non-padding tokens of the final layer
+MLP heads,"(256, 64) ReLU, dropout 0.2, AdamW lr 0.001, batch 256, early stopping patience 10 (max 100)"
+CNN,"embedding 128 (from scratch), filters 3/4/5 x 100, max-pool, dropout 0.5, same adaptive epoch-budget policy as DistilBERT"
+TF-IDF,"1-2 grams, max 50,000 features, min_df 3, max_df 0.95, sublinear tf, first 5,000 characters"
+Logistic regression / SVM,"C = 1.0, class_weight balanced"
+Naive Bayes,"multinomial, alpha 0.1"
+Random forest,"300 trees, min_samples_leaf 2, class_weight balanced, 13 features"
+Classical grouped CV (whole corpus),not run this revision; stability for classical baselines established instead via 5-seed replication (I1) and grouped CV of the neural heads on the Split A test pool (I2a)
+"Random forest, seed replication",refit per seed (5 seeds)
+Seeds,"42, 43, 44, 45, 46"
+Hardware,Tesla T4
+Software,"python 3.13.15, torch 2.11.0+cu128, transformers 5.16.1, sklearn 1.6.1, numpy 2.1.3, pandas 2.2.3, scipy 1.16.3"

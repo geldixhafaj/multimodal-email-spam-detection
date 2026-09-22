@@ -1,0 +1,9 @@
+design,comparison,only_first_correct,only_second_correct,p_value,significant_0.05_bonferroni
+A,DistilBERT + Structural (Fusion) vs DistilBERT embeddings + MLP (no structural),14,10,0.54126,False
+A,DistilBERT + Structural (Fusion) vs DistilBERT (text-only),47,32,0.11466,False
+A,DistilBERT (text-only) vs Lexical only (TF-IDF + LR),246,94,0.0,True
+A,DistilBERT + Structural (Fusion) vs Structural + lexical (LR),262,105,0.0,True
+B,DistilBERT + Structural (Fusion) vs DistilBERT embeddings + MLP (no structural),84,29,0.0,True
+B,DistilBERT + Structural (Fusion) vs DistilBERT (text-only),141,88,0.00056,True
+B,DistilBERT (text-only) vs Lexical only (TF-IDF + LR),302,337,0.17857,False
+B,DistilBERT + Structural (Fusion) vs Structural + lexical (LR),326,368,0.11956,False
